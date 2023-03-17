@@ -1,0 +1,145 @@
+명령어 2탄
+--help 모든 명령어의 사용법을 알려줌.
+
+모든파일 - 숨김파일, 기본파일, 기본폴더
+숨김파일 => OS의 중요한 파일
+.파일명
+
+ls -al 모든 파일을 자세히 보겠다
+
+mkdir 폴더를 생성
+touch 
+
+응답이 없으면 잘된거임
+실패했을 때는 응답이 있음
+
+rm 삭제 명령어
+
+ctrl+c 취소
+
+rm -r 폴더 삭제
+
+명령어 3탄
+cp 복사
+mv 파일 이동, 파일명 변경
+
+ln -s(소프트 링크) 바로가기 파일을 생성
+
+bin 폴더 - 실행파일이 모여 있는 곳
+
+명령어 4탄
+apt-get update
+apt-cache search tomcat
+
+파이프라인 |
+
+grep 뭔가 찾아낼 때 사용
+
+apt list
+sudo apt update
+(리눅스 - 최상위 관리자 root)
+(ubuntu)
+whoami
+저장소 목록 갱신할 권한이 없음
+
+sudo apt install -y tomcat9
+
+포트가 어떻게 활성화 되었는지
+
+sudo apt install net-tools
+netstat -nlpt 현재 사용중인 포트 확인
+인바운드 규칙 (방화벽 포트 열어주기 8080)
+
+PPA
+sudo apt remove tomcat9 (설정 파일은 지우지 않음)
+sudo apt --purge remove tomcat9
+
+https://launchpad.net/ubuntu/+ppas
+sudo add-apt-repository ppa:rivergod/tomcat8.5
+잘못된 버전의 ppa 저장소를 삭제!!
+sudo add-apt-repository --remove ppa:rivergod/tomcat8.5
+
+sudo add-apt-repository ppa:ttyrnpuu/tomcat
+
+sudo apt update
+
+lsb_release -a (우분투 버전과 코드명 확인)
+
+프로세스와 서비스
+CPU (연산장치)
+RAM (저장장치)
+
+CPU 1개 - 일하는 노동자 1명
+프로세스 1개
+Tomcat8 (서버-데몬) - 계속 실행중! (while)
+Thread(실, 수명) - 왔다 갔다하면서 실행 (Context-Switching)
+thread를 잠깐이라도 sleep 시켜줘야함
+A랑 B에 일을 동시에 한다.
+
+apt 명령어 설치 - 서비스 등록!!
+실행파일을 직접 찾아서 실행할 필요가 없음!!
+
+서비스 목록 확인(+실행중)(-실행중아님)
+service --status-all
+
+sudo service tomcat9 stop
+sudo service tomcat9 start
+sudo service tomcat9 restart
+
+서비스 명령어 사용하지 말자!
+
+service 명령어는 systemctl의 wrapper script이다.
+
+sudo systemctl list-unit-files
+sydi systemctl status tomcat8
+
+sudo systemctl stop tomcat8
+sudo systemctl start tomcat8
+
+ctrl+c, q -> 나가기
+
+종료 안될 경우가 생길 수 있음 - 직접 강제 종료!!
+서비스로 등록이 안되어 있는 프로세스
+(내가 직접 압축파일 다운 - 압축풀고 - 실행파일 실행)
+/etc/init.d/tomcat8 실행시켜야함
+
+데몬(while) 프로세스
+
+ps -ef 프로세스 확인 가능
+
+kill -l (kill 옵션 보기)
+kill -9 PID
+
+sigint (ctrl+c) == kill -2 pid
+sigkill (강제종료) - 프로세스 입장에서는 찝찝하게 종료된다.
+프로세스를 안전하게 종료시키려면 위와 같이 SIGKILL을 통한 종료는 가급적 삼가
+
+kill로 죽인거면 systemctl로 stop하는 것과 다르게 됨
+그래서 sudo systemctl restart tomcat8로 시작해야함
+
+kill pid 
+kill -15 pid
+sigterm은 안전한 종료
+
+- systemctl 입장에서는 exit 된 것이고
+안전한 종료후 restart로만 실행된다.
+왜냐하면 systemctl 입장에서는 종료가 아님 중지 상태가 된다.
+
+stop 후 start를 진행해도 됨
+
+ps -ef | grep tomcat8 | grep -v grep | awk '{print $1}'
+
+sudo kill -9 `ps -ef | grep -v grep | awk '{print $2}'`
+
+서비스가 종료되지 않은 상태이기 때문에 서비스 종료후 다시 시작해야한다.
+
+grep -v 지정된 패턴과 일치하는 항목을 제외
+awk 레코드(행)을 공백 문자로 분리하여 $1 첫번째 필드
+$2 두번째 필드 이런식으로 분리하여 처리할 수 있게 해준다.
+
+``백틱은 치환명령어 ``으로 감싼 부분을 실행결과로 치환
+
+/etc/init.d
+sudo ./tomcat8 stop
+sudo ./tomcat8 start
+
