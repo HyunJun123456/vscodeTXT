@@ -18,3 +18,33 @@ ec2 서버 - t2.micro 서버 2대 1488시간
 - 사용안함 (비용 발생)
 - 2개생성(비용 발생)
 - EC2서버종료(시점부터 비용발생)
+
+1. 자바 설치 (JDK, JRE)
+sudo apt update
+sudo apt install openjdk-11-jdk
+- JDK로 마인크래프트 게임 개발
+- 일반 사용자들이 마인크래프트 게임 하려면 JRE가 필요!!
+
+2. 깃허브 다운받기
+git clone 주소
+
+3. gradlew 실행권한주기
+cd ~/aws-v1
+chmod u+x gradlew
+
+4. gradlew로 프로젝트를 jar파일로 변경하기
+./gradlew build
+./ -> 현재폴더
+
+5. java로 jar를 실행
+cd build/libs
+java -jar *.jar
+
+nohub 명령어는 리눅스에서 프로세스를 실행한 터미널의 세션 연결이 끊어지더라도
+지속적으로 동작 할 수 있게 해주는 명령어
+
+우리가 포그라운드로 실행했기 때문!! - nohup으로 했다고 하더라도 터미널 종료시에 함께 종료!!
+우리는 백그라운드로 실행해야 한다.
+
+nohub은 자동으로 로그를 남긴다.
+
