@@ -143,3 +143,58 @@ $2 두번째 필드 이런식으로 분리하여 처리할 수 있게 해준다.
 sudo ./tomcat8 stop
 sudo ./tomcat8 start
 
+단축키 배우기
+
+명령행 모드
+:w 저장
+:q 에디터종료
+:q! 강제 에디터종료
+:wq 저장 후 종료
+
+일반 모드
+마우스 우클릭 외부 코드 붙여넣기
+shift+v 블럭지정
+x 현재 커서의 문자 삭제
+dd 현재 행 삭제
+yy 현재 행 복사
+p 붙여넣기
+u undo 기능
+ctrl+r redo 기능
+home 행의 맨 처음으로 이동
+$ 행의 맨 긑으로 이동
+ctrl+b 위로 한 화면 스크롤 
+ctrl+f 아랠로 한 화면 스크롤
+
+권한
+-rw-r--r-- 1 root root test1.txt
+파일, d(폴더)
+root 소유자
+root 그룹
+rw- root 권한
+r-- root 그룹 권한
+r-- 누가나(anyone)
+
+
+읽기(r), 쓰기(w), 실행(x)
+r:4, w:2, x:1
+sudo chmod 777 파일이름 -> 모든 권한을 주는거
+sudo chown 소유자/그룹 파일이름
+
+
+sudo tail -f catalina.out 
+-f: 실시간
+
+> (표준 입출력을 변경하는 방법)
+
+표준 입력 0
+표준 출력 1
+표준 에러 2
+
+
+
+
+
+
+
+
+
