@@ -36,7 +36,7 @@ chmod u+x gradlew
 ./gradlew build
 ./ -> 현재폴더
 
-5. java로 jar를 실행
+5. java로 jar를 실행(X)
 cd build/libs
 java -jar *.jar
 
@@ -46,5 +46,48 @@ nohub 명령어는 리눅스에서 프로세스를 실행한 터미널의 세션
 우리가 포그라운드로 실행했기 때문!! - nohup으로 했다고 하더라도 터미널 종료시에 함께 종료!!
 우리는 백그라운드로 실행해야 한다.
 
-nohub은 자동으로 로그를 남긴다.
+nohub은 자동으로 로그를 남긴다. nohup.out
+
+6. nohup으로 실행(O)
+[1. 에러 출력 - 2 - nohup.out]
+[2. 표준 출력 - 1 - nohup.out]
+
+nohup java -jar 파일명 1>log.out 2>err.out &
+이유: 배포를 위해서 작성했던 모든 명령어들 - 스크립트 작성!! - 자동화
+
+7. 시간 변경(+9시간)
+- 우분투 OS에 시간 세팅
+
+timedatectl 명령어
+timedatectl list-timezones
+sudo timedatectl set-timezone Asia/Seoul
+
+8. pid 찾기
+ps -ef | grep *.jar | grep -v grep | awk '{print$2}'
+
+pgrep -f *.jar
+
+$변수 -> 변수의 값을 출력 혹은 실행
+$(명령어) -> 명령어의 결과를 리턴
+
+spring-stop.sh -> 실행권한을 줌
+스크립트 짜기
+-----------------------------------------------
+echo "Springboot Stop....."
+SPRING_PID=$(pgrep -f v1-0.0.1-SNAPSHOT.jar)
+echo $SPRING_PID
+kill -9 $SPRING_PID
+-----------------------------------------------
+./spring-stop.sh
+
+
+
+
+
+
+
+
+
+
+
 
