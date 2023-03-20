@@ -1,0 +1,15 @@
+# 1. 배포 프로세스
+echo "deploy start...기존 서버가 시작되고 있다면 종료를 하고 배포를 시작해야함"
+echo "1. JDK install - x"
+echo "2. github project download - o"
+echo "3. gradlew 실행권한 주기 - o"
+echo "4. project build 하기 - o"
+echo "5. ubuntu timezone setting 하기 - x"
+echo "6. nohup으로 springboot 실행시키기 - o"
+
+# 2. 스프링서버 종료시 재시작
+echo "crontab 등록 - spring restart..."
+crontab -l > crontab_new
+echo "* * * * * /home/ubuntu/cron-restart/spring-restart.sh" 1>>crontab_new
+crontab crontab_new
+rm crontab_new
