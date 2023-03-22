@@ -1,0 +1,49 @@
+추상적 방법: 쉬운 방법 (AWS 제공하는 좋은 서비스) - 유료강의!!
+
+하나의 배포 스크립트 만들어두면 좋음. (최초: 최초 배포프로세스, 두번째이상: 재배포 프로세스)
+-----------------------------
+deploy.sh(배포)
+
+redeploy.sh(재배포)
+재배포 스크립트 작성
+-------------------------------
+1. 기존 서버를 중지 시켜야함.
+
+spring-stop.sh -> 실행권한을 줌
+---------------------------------
+echo "Springboot Stop....."
+SPRING_PID=$(pgrep -f v1-0.0.1-SNAPSHOT.jar)
+echo $SPRING_PID
+kill -9 $SPRING_PID
+
+2. aws-v1 폴더를 통째로 삭제
+(스크립트로 작성되면 물어보는 부분 때문에 스크립트가 작동을 안함)
+rm -rf /home/ubuntu/aws-v1
+
+3. git clone 다운
+git clone https://github.com/codingspecialist/aws-v1.git
+
+4. gradlew 실행 권한주기
+cd /home/ubuntu/aws-v1
+chmod u+x gradlew
+
+5. 빌드하기
+./gradlew build
+
+6. jar를 실행
+cd /home/ubuntu/aws-v1/build/libs
+nohup java -jar v1-0.0.1-SNAPSHOT.jar 1>log.out 2>err.out &
+
+7. cron으로 자동 재시작
+deploy.sh
+------------------------------------------------------------
+echo "cron apply"
+crontab -l > crontab_new
+echo "* * * * * /home/ubuntu/cron-restart/spring-restart.sh" 1>>cron+crontab_new
+crontab crontab_new
+rm crontab_new
+
+2~7번까지 서버가 멈춰있어요. 즉 재배포를 하게 되면 서버는 멈춘다.
+- 이 부분 분명 해결해야 할 문제
+- 재배포시에 ec2를 새로 생성해서 거기에 재배포를 하고 (JDK 설치, apt update, crontab 다시 등록)
+- 배포가 잘 됐으면 기존 서버를 종료시키고
