@@ -1,3 +1,5 @@
 01. Swift 소개
 02. Swift 어떻게 배울까
 03. Swift 기본 지식
+04. Swift 컬렉션 (collection), 열거형 (enum) 1
+04. Swift 컬렉션 (collection), 열거형 (enum) 2
