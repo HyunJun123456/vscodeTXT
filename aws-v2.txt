@@ -21,3 +21,67 @@ IP
 -> 고정 IP를 EC2에 연결 안하면 (유료)
 -> 연결을 하면 (무료)
 
+1. 환경변수
+export LOVE="i love you"
+echo $LOVE
+
+2. bashrc
+export LOVE="i love you"
+로그인시에만 적용된다.
+source ./bashrc -> 강제 적용
+
+3. 환경변수 적용 범위
+.bashrc 어디에서나 사용가능
+터미널 만들고 source 적용 - 터미널이 꺼지기 직전까지
+쉘 스크립트(파일)로 변수를 만들고 다른 파일에서 실행하기 위해서는
+- .bashrc 등록되어 있든지 (광역적으로 설정)
+- source로 터미널에서 적용이 되어 있든지 (터미널이 꺼지면 못씀)
+- deploy.sh 파일이 실행되는 동안에만 변수를 사용할 수 있으면 된다.
+ ***** 파일에 source라는 코드를 작성해주면 됨 *****
+
+cron 종료 이유
+(1) PID를 감시하고 있음
+(2) 종료시 5656 X
+(3) 서버 재시작!
+  1. 프로젝트 경로
+  2. Github 다운
+  3. jar (빌드)
+  4. 실행
+  5. cron 등록
+
+재배로를 하게 되면 서버가 종료됨
+이떄, 크론이 작동하게 되면 꼬이게 됨
+
+4. 서버 PID 찾아서 종료시키기
+
+aws-v2-0.0.1.jar (이 형태로 실행파일이 만들어짐)
+
+aws-v2-0.0.1.jar gradle을 포함하지 않음
+
+jar {
+    enabled = false
+}
+일반적인 jar 파일이 만들어짐
+
+pgrep -f aws-v2-0.0.1.jar 실행 결과
+/home/ubuntu/aws-v2/build/libs/aws-v2-0.0.1.jar
+
+# first deploy
+
+# 3-1. apt update
+sudo apt-get -y update 1>/dev/null
+
+# 3-2. jdk install
+sudo apt-get -y install openjdk-11-jdk 1>/dev/null
+
+# 3-3. timezone
+sudo timedatectl set-timezone Asia/Seoul
+
+5. 프로젝트 폴더 삭제
+rm -rf /home/ubuntu/aws-v2
+
+git clone 할때 sleep 3s를 걸어
+비동기식이라고 가정했을 때 기다려줌
+
+6. 프로파일 액티브 설정
+java -jar -Dspring.profiles.active=prod 해당파일
