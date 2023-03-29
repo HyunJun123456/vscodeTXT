@@ -94,3 +94,6 @@ java -jar -Dspring.profiles.active=prod 해당파일
 -v 압축을 하거나 풀때 출력을 화면에 보여줄지 말지
 -f 파일 이름을 지정할 수 있음
 -x tar로 압축을 풀때
+
+tar -cvf hello.tar 파일명 파일명
+tar -xvf hello.tar 
