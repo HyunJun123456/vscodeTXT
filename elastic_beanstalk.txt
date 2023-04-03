@@ -38,6 +38,9 @@ JDK 설치 -> 실행 / 서버
 
 추후: RDS_HOSTNAME: MariaDB ip 주소로 변경해야함
 
+RDS_USERNAME => metacoding
+rds.username으로 적어도 스프링이 자동 변경해줌
+
 (2) 키페어 등록
 
 4. 구성 정리
@@ -59,3 +62,8 @@ RDS 설정
 
 5. RDS 생성
 이름: aws-v4-rds
+엔드포인트: aws-v4-rds.cj7jtw8s8bj8.ap-northeast-2.rds.amazonaws.com
+포트: 3306
+
+
+
