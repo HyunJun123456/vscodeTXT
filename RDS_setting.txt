@@ -1,0 +1,21 @@
+SHOW DATABASES;
+
+CREATE DATABASE metadb;
+
+USE metadb;
+
+CREATE TABLE Book( -- mariadb는 대소문자를 구분함
+	id BIGINT AUTO_INCREMENT PRIMARY KEY,
+	title VARCHAR(255),
+	content VARCHAR(255),
+	author VARCHAR(255)
+);
+
+SHOW VARIABLES LIKE 'c%';
+
+ALTER DATABASE metadb CHARACTER SET = 'utf8mb4' COLLATE = 'utf8mb4_general_ci';
+
+DROP TABLE Book;
+
+SELECT * FROM Book;
+
