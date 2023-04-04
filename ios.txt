@@ -5,3 +5,5 @@
 04. Swift 컬렉션 (collection), 열거형 (enum) 2
 05. Swift 연산자 (operator), 조건문 (conditions) 1
 05. Swift 연산자 (operator), 조건문 (conditions) 2
+06. Swift 반복문(loops)
+07. Swift 함수(functions) 1
