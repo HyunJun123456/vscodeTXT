@@ -7,3 +7,12 @@
 05. Swift 연산자 (operator), 조건문 (conditions) 2
 06. Swift 반복문(loops)
 07. Swift 함수(functions) 1
+08. Swift 클로져 (closure) 1
+08. Swift 클로져 (closure) 2
+08. Swift 클로져 (closure) 3
+09. Swift 구조체 (struct) 1
+09. Swift 구조체 (struct) 2
+09. Swift 구조체 (struct) 3
+//09. Swift 구조체 (struct) 4
+//09. Swift 구조체 (struct) 5
+
