@@ -1,0 +1,16 @@
+CI / CD
+지속적 통합 / 지속적 배포(전달)
+
+AWS 사용자, 정책, 그룹, 역할 이해하기
+- IAM (Identity Access Manager)
+
+1. 시큐리티 그룹
+sg-aws-v5
+80, 22
+3306 (내 IP, 같은 시큐리티 그룹이면 다 들어올 수 있게)
+(RDS)
+
+2. VPC
+vpc-00abc806ade873be9
+(RDS)
+
