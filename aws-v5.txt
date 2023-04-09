@@ -32,9 +32,10 @@ Github Action (CI / CD도구)
 1. 로컬 컴퓨터에서 코드변경해서 기능이 추가
 2. Push
 3. Github Repository에 코드반영 (트리거 .github/workflows/*.yml)
+- CI서버
 4. 우분투 설치
 5. JDK 설치
 6. 코드 다운로드
 7. 코드 test
 8. build (실행파일 생성)
-
+- CD
